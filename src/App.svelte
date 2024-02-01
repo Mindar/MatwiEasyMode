@@ -22,11 +22,11 @@ const tools = [
 		title: "ABC Analyse",
 		component: AbcAnalysis
 	},{
-		title: "XYZ Analyse",
-		component: XyzAnalysis
-	},{
 		title: "Stücklisten",
 		component: BomGenerator
+	},{
+		title: "XYZ Analyse",
+		component: XyzAnalysis
 	}
 ];
 
@@ -36,7 +36,6 @@ let toolSelected: ComponentType | null = null;
 
 let warningVisible = true;
 function toggleWarning(event: KeyboardEvent) {
-	console.log(event);
 	if (event.key === "Escape") {
 		warningVisible = !warningVisible;
 	}
@@ -47,10 +46,15 @@ function toggleWarning(event: KeyboardEvent) {
 <svelte:window on:keydown={toggleWarning} />
 
 {#if warningVisible}
-	<header>
-		Achtung: Keine Garantie für korrekte Ergebnisse oder sonst irgendetwas! Ergebnisse können falsch sein und müssen unbedingt von Hand nachgerechnet werden. Nutzung ausschließlich für Übungen und nur auf eigene Gefahr.
+	<header class="flex-col">
+		<span>
+			Achtung: Keine Garantie für korrekte Ergebnisse oder sonst irgendetwas! Ergebnisse können falsch sein und müssen unbedingt von Hand nachgerechnet werden. Nutzung ausschließlich für Übungen und nur auf eigene Gefahr.
+		</span>
 		<br>
-		<span class="smol">Escape-Taste zum ausblenden dieses Textes drücken.</span>
+		<span class="smol">
+			Escape-Taste zum ausblenden dieses Textes drücken oder auf Schließen klicken.
+		</span>
+		<button class="textbtn" on:click={() => {warningVisible = false}}>Schließen</button>
 	</header>
 {/if}
 
