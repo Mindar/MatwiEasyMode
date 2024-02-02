@@ -1,11 +1,11 @@
 <script lang="ts">
 import { onMount, type ComponentType, type SvelteComponent } from "svelte";
 import AbcAnalysis from "./lib/AbcAnalysis.svelte";
-import XyzAnalysis from "./lib/XyzAnalysis.svelte";
 import BomGenerator from "./lib/BomGenerator.svelte";
+import Miscellaneous from "./lib/Miscellaneous.svelte";
 
 
-type ToolComponent = AbcAnalysis | XyzAnalysis | BomGenerator;
+type ToolComponent = AbcAnalysis | Miscellaneous | BomGenerator;
 
 interface ToolType {
 	title: string;
@@ -25,8 +25,8 @@ const tools = [
 		title: "Stücklisten",
 		component: BomGenerator
 	},{
-		title: "XYZ Analyse",
-		component: XyzAnalysis
+		title: "Sonstige Rechner",
+		component: Miscellaneous
 	}
 ];
 
@@ -71,6 +71,9 @@ function toggleWarning(event: KeyboardEvent) {
 			Software Downloaden
 		</a>
 	</main>
+	<p class="pa-30">
+		Hinweis: Alle Kommawerte bitte in der englischen Schreibweise, also mit PUNKT statt KOMMA eingeben, sonst kommt Müll raus. Außerdem keine Tausender Trennzeichen verwenden. Also z.B. den Wert 12.345.000,29 so eingeben: <span class="monospace bg-grey">12345000.29</span>
+	</p>
 {/if}
 
 <style>
